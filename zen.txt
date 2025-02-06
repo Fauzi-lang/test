@@ -1,0 +1,47 @@
+-- Script One Piece Open Seas
+
+-- Auto Farm
+local function autoFarm()
+  while true do
+    game:GetService("ReplicatedStorage").Events.FarmEvent:FireServer()
+    wait(1)
+  end
+end
+
+-- Auto Buy Fruit
+local function autoBuyFruit()
+  while true do
+    game:GetService("ReplicatedStorage").Events.BuyFruitEvent:FireServer("FruitName")
+    wait(1)
+  end
+end
+
+-- Auto Sell Fruit
+local function autoSellFruit()
+  while true do
+    game:GetService("ReplicatedStorage").Events.SellFruitEvent:FireServer("FruitName")
+    wait(1)
+  end
+end
+
+-- Menu
+local menu = {
+  {name = "Auto Farm", func = autoFarm},
+  {name = "Auto Buy Fruit", func = autoBuyFruit},
+  {name = "Auto Sell Fruit", func = autoSellFruit},
+}
+
+-- Show menu
+for i, v in pairs(menu) do
+  print(i .. ". " .. v.name)
+end
+
+-- Get user input
+local choice = io.read("Masukkan pilihan: ")
+
+-- Execute chosen function
+if menu[tonumber(choice)] then
+  menu[tonumber(choice)].func()
+else
+  print("Pilihan tidak valid")
+end
